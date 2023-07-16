@@ -1,17 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
-import App from "./components/App";
-import { theme } from "./servises/theme";
+import React, { Suspense } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import { ThemeProvider } from 'styled-components';
+import App from './components/App';
+import { theme } from 'servises/theme';
+import { Loader } from 'components/Loader/Loader';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <Suspense fallback={<Loader />}>
+    <React.StrictMode>
+      <BrowserRouter basename="/goit-react-hw-05-movies">
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </React.StrictMode>
+  </Suspense>
 );
