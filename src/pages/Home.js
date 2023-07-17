@@ -1,6 +1,6 @@
-import React from "react";
-import MoviesList from "../components/MoviesList/MoviesList";
-import { getPopularMovies } from "../servises/getMoviesInformation";
+import React from 'react';
+import MoviesList from '../components/MoviesList/MoviesList';
+import { getPopularMovies } from '../services/getMoviesInformation';
 
 const popular = await getPopularMovies();
 console.log(popular.results);

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import NoPoster from "../../assets/no-poster.jpg";
-import { FilmName, MovePreview, HomePageSection } from "./MoviesList.styled";
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import NoPoster from '../../assets/no-poster.jpg';
+import { FilmName, MovePreview, HomePageSection } from './MoviesList.styled';
 
 const MoviesList = ({ trendFilms }) => {
   const [arrayList, setArrayList] = useState([]);
@@ -13,13 +13,13 @@ const MoviesList = ({ trendFilms }) => {
 
   return (
     <HomePageSection>
-      {arrayList.map((item) => (
+      {arrayList.map(item => (
         <Link
-          style={{ textDecoration: "none", color: "black" }}
+          style={{ textDecoration: 'none', color: 'black' }}
           to={
-            location.pathname.includes("Movies")
+            location.pathname.includes('movies')
               ? `${location.pathname}/${item.id}`
-              : `Movies/${item.id}`
+              : `movies/${item.id}`
           }
           key={item.id}
         >

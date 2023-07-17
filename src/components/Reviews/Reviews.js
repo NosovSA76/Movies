@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getMoviesReviews } from "../../servises/getMoviesInformation";
-import { ReviewsList, ReviewTitle, ReviewText } from "./Reviews.styled";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getMoviesReviews } from '../../services/getMoviesInformation';
+import { ReviewsList, ReviewTitle, ReviewText } from './Reviews.styled';
 
 const Reviews = () => {
   const [reviesInfo, setReviesInfo] = useState([]);
@@ -25,7 +25,7 @@ const Reviews = () => {
       {reviesInfo.length === 0 ? (
         <p>There are no reviews.</p>
       ) : (
-        reviesInfo.map((reviesInfo) => (
+        reviesInfo.map(reviesInfo => (
           <li key={reviesInfo.id}>
             <ReviewTitle>Author: {reviesInfo.author}</ReviewTitle>
             <ReviewText>{reviesInfo.content}</ReviewText>

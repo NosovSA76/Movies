@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useParams, Link, Outlet } from "react-router-dom";
-import { getMoviesDetailsById } from "../../servises/getMoviesInformation";
-import NoPoster from "../../assets/no-poster.jpg";
+import React, { useState, useEffect } from 'react';
+import { useParams, Link, Outlet } from 'react-router-dom';
+import { getMoviesDetailsById } from '../../services/getMoviesInformation';
+import NoPoster from '../../assets/no-poster.jpg';
 import {
   MoviesCard,
   MoviesPoster,
@@ -9,7 +9,7 @@ import {
   MoviesName,
   MoviesInfoText,
   MoviesInfoTitle,
-} from "./MovieDetails.styled";
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [moviesInfo, setMoviesInfo] = useState({});
@@ -53,7 +53,7 @@ const MovieDetails = () => {
           <MoviesInfoText>{overview}</MoviesInfoText>
           <MoviesInfoTitle>Genres</MoviesInfoTitle>
           {genres &&
-            genres.map((genre) => <span key={genre.id}>{genre.name}, </span>)}
+            genres.map(genre => <span key={genre.id}>{genre.name}, </span>)}
         </MoviesInformation>
       </MoviesCard>
       <ul>

@@ -1,6 +1,6 @@
-import { Outlet } from "react-router-dom";
-import { Container, Header, Link, Logo } from "./SharedLayout.styled";
-import { SiThemoviedatabase } from "react-icons/si";
+import { Outlet } from 'react-router-dom';
+import { Container, Header, Link, Logo } from './SharedLayout.styled';
+import { SiThemoviedatabase } from 'react-icons/si';
 
 const SharedLayout = () => {
   return (
@@ -13,7 +13,7 @@ const SharedLayout = () => {
           <Link to="/" end>
             Home
           </Link>
-          <Link to="/Movies">Movies</Link>
+          <Link to="/movies">Movies</Link>
         </nav>
       </Header>
       <Outlet />

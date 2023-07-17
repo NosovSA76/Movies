@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getMoviesCast } from "../../servises/getMoviesInformation";
-import NoPhoto from "../../assets/no-photo.png";
-import { CastList, CastCard, CastPhoto } from "./Cast.styled";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getMoviesCast } from '../../services/getMoviesInformation';
+import NoPhoto from '../../assets/no-photo.png';
+import { CastList, CastCard, CastPhoto } from './Cast.styled';
 
 const Cast = () => {
   const [MoviesCast, setMoviesCast] = useState([]);
@@ -23,7 +23,7 @@ const Cast = () => {
 
   return (
     <CastList>
-      {MoviesCast.map((MoviesCast) => (
+      {MoviesCast.map(MoviesCast => (
         <CastCard key={MoviesCast.id}>
           <CastPhoto
             width={170}
