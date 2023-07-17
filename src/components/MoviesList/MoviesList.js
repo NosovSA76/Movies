@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
 import NoPoster from '../../assets/no-poster.jpg';
 import { FilmName, MovePreview, HomePageSection } from './MoviesList.styled';
@@ -39,6 +40,16 @@ const MoviesList = ({ trendFilms }) => {
       ))}
     </HomePageSection>
   );
+};
+
+MoviesList.propTypes = {
+  trendFilms: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      poster_path: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 export default MoviesList;

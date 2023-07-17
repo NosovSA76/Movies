@@ -7,8 +7,6 @@ const Reviews = () => {
   const [reviesInfo, setReviesInfo] = useState([]);
   const { MoviesID } = useParams();
 
-  console.log(MoviesID);
-
   useEffect(() => {
     (async () => {
       try {

@@ -8,8 +8,6 @@ const Cast = () => {
   const [MoviesCast, setMoviesCast] = useState([]);
   const { MoviesID } = useParams();
 
-  console.log(MoviesID);
-
   useEffect(() => {
     (async () => {
       try {
