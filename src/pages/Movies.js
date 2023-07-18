@@ -3,7 +3,7 @@ import { ToastContainer, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSearchParams } from 'react-router-dom';
 import MoviesList from '../components/MoviesList/MoviesList';
-import { Searchbar } from '../components/Search/search';
+import { Searchbar } from 'components/Search/Search';
 import { getMoviesByQuery } from '../services/getMoviesInformation';
 
 const Movies = () => {

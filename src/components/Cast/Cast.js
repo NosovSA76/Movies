@@ -5,35 +5,35 @@ import NoPhoto from '../../assets/no-photo.png';
 import { CastList, CastCard, CastPhoto } from './Cast.styled';
 
 const Cast = () => {
-  const [MoviesCast, setMoviesCast] = useState([]);
-  const { MoviesID } = useParams();
+  const [moviesCast, setMoviesCast] = useState([]);
+  const { moviesID } = useParams();
 
   useEffect(() => {
     (async () => {
       try {
-        const data = await getMoviesCast(MoviesID);
+        const data = await getMoviesCast(moviesID);
         setMoviesCast(data);
       } catch (error) {
         console.log(error.message);
       }
     })();
-  }, [MoviesID]);
+  }, [moviesID]);
 
   return (
     <CastList>
-      {MoviesCast.map(MoviesCast => (
-        <CastCard key={MoviesCast.id}>
+      {moviesCast.map(moviesCast => (
+        <CastCard key={moviesCast.id}>
           <CastPhoto
             width={170}
             src={
-              MoviesCast.profile_path
-                ? `https://image.tmdb.org/t/p/original/${MoviesCast.profile_path}`
+              moviesCast.profile_path
+                ? `https://image.tmdb.org/t/p/original/${moviesCast.profile_path}`
                 : NoPhoto
             }
             alt=""
           />
-          <p>Name:{MoviesCast.original_name}</p>
-          <p>Character: {MoviesCast.character}</p>
+          <p>Name:{moviesCast.original_name}</p>
+          <p>Character: {moviesCast.character}</p>
         </CastCard>
       ))}
     </CastList>

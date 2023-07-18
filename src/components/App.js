@@ -14,7 +14,7 @@ function App() {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
         <Route path="/movies" element={<Movies />}></Route>
-        <Route path="movies/:MoviesID" element={<MovieDetails />}>
+        <Route path="movies/:moviesID" element={<MovieDetails />}>
           <Route path="cast" element={<Cast />} />
           <Route path="review" element={<Reviews />} />
         </Route>

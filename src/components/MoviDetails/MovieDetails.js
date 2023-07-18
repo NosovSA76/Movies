@@ -13,18 +13,18 @@ import {
 
 const MovieDetails = () => {
   const [moviesInfo, setMoviesInfo] = useState({});
-  const { MoviesID } = useParams();
+  const { moviesID } = useParams();
 
   useEffect(() => {
     (async () => {
       try {
-        const data = await getMoviesDetailsById(MoviesID);
+        const data = await getMoviesDetailsById(moviesID);
         setMoviesInfo(data);
       } catch (error) {
         console.log(error.message);
       }
     })();
-  }, [MoviesID]);
+  }, [moviesID]);
 
   const date = new Date(moviesInfo.release_date);
   const year = date.getFullYear();
