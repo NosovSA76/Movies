@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import { Container, Header, Link, Logo } from './SharedLayout.styled';
 import { SiThemoviedatabase } from 'react-icons/si';
+import { Container, Header, Link, Logo } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   return (
