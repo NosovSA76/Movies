@@ -6,39 +6,75 @@ import { FilmName, MovePreview, HomePageSection } from './MoviesList.styled';
 
 const MoviesList = ({ trendFilms }) => {
   const [arrayList, setArrayList] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   const location = useLocation();
 
+  console.log(location.pathname);
+
   useEffect(() => {
+    const promises = trendFilms.map(item => {
+      if (!item.poster_path) {
+        return Promise.resolve();
+      }
+
+      return new Promise(resolve => {
+        const img = new Image();
+        img.src = `https://image.tmdb.org/t/p/original/${item.poster_path}`;
+        img.onload = () => resolve();
+        img.onerror = () => resolve();
+      });
+    });
+
+    Promise.all(promises)
+      .then(() => {
+        setLoaded(true);
+      })
+      .catch(() => {
+        console.log('Error loading images');
+      });
+
     setArrayList(trendFilms);
   }, [trendFilms]);
 
+  const createMovieDetailsURL = movieID => {
+    return `/movies/${movieID}`;
+  };
+  console.log(location.pathname);
+  console.log(location);
+
   return (
-    <HomePageSection>
-      {arrayList.map(item => (
-        <Link
-          style={{ textDecoration: 'none', color: 'black' }}
-          to={
-            location.pathname.includes('movies')
-              ? `${location.pathname}/${item.id}`
-              : `movies/${item.id}`
-          }
-          key={item.id}
-        >
-          <MovePreview>
-            <img
-              width={70}
-              src={
-                item.poster_path
-                  ? `https://image.tmdb.org/t/p/original/${item.poster_path}`
-                  : NoPoster
-              }
-              alt=""
-            />
-            <FilmName>{item.title}</FilmName>
-          </MovePreview>
-        </Link>
-      ))}
-    </HomePageSection>
+    loaded && (
+      <HomePageSection>
+        {arrayList.map(item => (
+          <Link
+            style={{ textDecoration: 'none', color: 'black' }}
+            to={createMovieDetailsURL(item.id)}
+            state={{
+              from: location.search
+                ? `${location.pathname}/${location.search}`
+                : '/',
+            }}
+            key={item.id}
+          >
+            <MovePreview>
+              <img
+                width={70}
+                src={
+                  item.poster_path
+                    ? `https://image.tmdb.org/t/p/original/${item.poster_path}`
+                    : NoPoster
+                }
+                alt=""
+                onError={e => {
+                  e.target.src = NoPoster;
+                }}
+              />
+              <FilmName>{item.title}</FilmName>
+            </MovePreview>
+          </Link>
+        ))}
+      </HomePageSection>
+    )
   );
 };
 

@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import {
+  useParams,
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
+import { BsArrowLeft } from 'react-icons/bs';
 import { getMoviesDetailsById } from '../../services/getMoviesInformation';
 import NoPoster from '../../assets/no-poster.jpg';
 import {
@@ -14,6 +21,7 @@ import {
 const MovieDetails = () => {
   const [moviesInfo, setMoviesInfo] = useState({});
   const { moviesID } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     (async () => {
@@ -26,14 +34,33 @@ const MovieDetails = () => {
     })();
   }, [moviesID]);
 
+  console.log(location);
+
   const date = new Date(moviesInfo.release_date);
   const year = date.getFullYear();
   const score = Math.round(moviesInfo.vote_average * 10);
   const overview = moviesInfo.overview;
   const genres = moviesInfo.genres;
+  console.log('location From MovieDetal: ', location);
+
+  const navigate = useNavigate();
+
+  const handleMoveBack = () => {
+    if (location.state) {
+      navigate(location.state.from);
+      return;
+    }
+
+    navigate('/');
+  };
 
   return (
     <>
+      <button onClick={() => handleMoveBack()}>
+        <BsArrowLeft />
+        Go back
+      </button>
+
       <MoviesCard>
         <MoviesPoster
           width={170}
@@ -58,10 +85,24 @@ const MovieDetails = () => {
       </MoviesCard>
       <ul>
         <li>
-          <Link to="cast">Casts</Link>
+          <Link
+            to="cast"
+            state={{
+              from: location.state.from,
+            }}
+          >
+            Casts
+          </Link>
         </li>
         <li>
-          <Link to="review">Reviews</Link>
+          <Link
+            to="review"
+            state={{
+              from: location.state.from,
+            }}
+          >
+            Reviews
+          </Link>
         </li>
       </ul>
       <Outlet></Outlet>
