@@ -9,8 +9,6 @@ const MoviesList = ({ trendFilms }) => {
   const [loaded, setLoaded] = useState(false);
   const location = useLocation();
 
-  console.log(location.pathname);
-
   useEffect(() => {
     const promises = trendFilms.map(item => {
       if (!item.poster_path) {
@@ -39,8 +37,6 @@ const MoviesList = ({ trendFilms }) => {
   const createMovieDetailsURL = movieID => {
     return `/movies/${movieID}`;
   };
-  console.log(location.pathname);
-  console.log(location);
 
   return (
     loaded && (
@@ -50,9 +46,7 @@ const MoviesList = ({ trendFilms }) => {
             style={{ textDecoration: 'none', color: 'black' }}
             to={createMovieDetailsURL(item.id)}
             state={{
-              from: location.search
-                ? `${location.pathname}/${location.search}`
-                : '/',
+              from: location,
             }}
             key={item.id}
           >

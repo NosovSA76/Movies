@@ -21,21 +21,25 @@ const Cast = () => {
 
   return (
     <CastList>
-      {moviesCast.map(moviesCast => (
-        <CastCard key={moviesCast.id}>
-          <CastPhoto
-            width={170}
-            src={
-              moviesCast.profile_path
-                ? `https://image.tmdb.org/t/p/original/${moviesCast.profile_path}`
-                : NoPhoto
-            }
-            alt=""
-          />
-          <p>Name:{moviesCast.original_name}</p>
-          <p>Character: {moviesCast.character}</p>
-        </CastCard>
-      ))}
+      {moviesCast.length === 0 ? (
+        <p>There are no cast.</p>
+      ) : (
+        moviesCast.map(moviesCast => (
+          <CastCard key={moviesCast.id}>
+            <CastPhoto
+              width={170}
+              src={
+                moviesCast.profile_path
+                  ? `https://image.tmdb.org/t/p/original/${moviesCast.profile_path}`
+                  : NoPhoto
+              }
+              alt=""
+            />
+            <p>Name:{moviesCast.original_name}</p>
+            <p>Character: {moviesCast.character}</p>
+          </CastCard>
+        ))
+      )}
     </CastList>
   );
 };
